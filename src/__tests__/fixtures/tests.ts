@@ -1,4 +1,3 @@
-
 function func1() {}
 function func2() {}
 
@@ -16,398 +15,400 @@ export interface TestSuite {
 
 const tests: TestSuite[] = [
   {
-    description: 'scalars',
+    description: "scalars",
     tests: [
       {
-        description: 'equal numbers',
+        description: "equal numbers",
         value1: 1,
         value2: 1,
-        equal: true
+        equal: true,
       },
       {
-        description: 'not equal numbers',
+        description: "not equal numbers",
         value1: 1,
         value2: 2,
-        equal: false
+        equal: false,
       },
       {
-        description: 'number and array are not equal',
+        description: "number and array are not equal",
         value1: 1,
         value2: [],
-        equal: false
+        equal: false,
       },
       {
-        description: '0 and null are not equal',
+        description: "0 and null are not equal",
         value1: 0,
         value2: null,
-        equal: false
+        equal: false,
       },
       {
-        description: 'equal strings',
-        value1: 'a',
-        value2: 'a',
-        equal: true
+        description: "equal strings",
+        value1: "a",
+        value2: "a",
+        equal: true,
       },
       {
-        description: 'not equal strings',
-        value1: 'a',
-        value2: 'b',
-        equal: false
+        description: "not equal strings",
+        value1: "a",
+        value2: "b",
+        equal: false,
       },
       {
-        description: 'empty string and null are not equal',
-        value1: '',
+        description: "empty string and null are not equal",
+        value1: "",
         value2: null,
-        equal: false
+        equal: false,
       },
       {
-        description: 'null is equal to null',
+        description: "null is equal to null",
         value1: null,
         value2: null,
-        equal: true
+        equal: true,
       },
       {
-        description: 'equal booleans (true)',
+        description: "equal booleans (true)",
         value1: true,
         value2: true,
-        equal: true
+        equal: true,
       },
       {
-        description: 'equal booleans (false)',
+        description: "equal booleans (false)",
         value1: false,
         value2: false,
-        equal: true
+        equal: true,
       },
       {
-        description: 'not equal booleans',
+        description: "not equal booleans",
         value1: true,
         value2: false,
-        equal: false
+        equal: false,
       },
       {
-        description: '1 and true are not equal',
+        description: "1 and true are not equal",
         value1: 1,
         value2: true,
-        equal: false
+        equal: false,
       },
       {
-        description: '0 and false are not equal',
+        description: "0 and false are not equal",
         value1: 0,
         value2: false,
-        equal: false
+        equal: false,
       },
       {
-        description: 'NaN and NaN are equal',
+        description: "NaN and NaN are equal",
         value1: NaN,
         value2: NaN,
-        equal: true
+        equal: true,
       },
       {
-        description: '0 and -0 are equal',
+        description: "0 and -0 are equal",
         value1: 0,
         value2: -0,
-        equal: true
+        equal: true,
       },
       {
-        description: 'Infinity and Infinity are equal',
+        description: "Infinity and Infinity are equal",
         value1: Infinity,
         value2: Infinity,
-        equal: true
+        equal: true,
       },
       {
-        description: 'Infinity and -Infinity are not equal',
+        description: "Infinity and -Infinity are not equal",
         value1: Infinity,
         value2: -Infinity,
-        equal: false
-      }
-    ]
+        equal: false,
+      },
+    ],
   },
 
   {
-    description: 'objects',
+    description: "objects",
     tests: [
       {
-        description: 'empty objects are equal',
+        description: "empty objects are equal",
         value1: {},
         value2: {},
-        equal: true
+        equal: true,
       },
       {
         description: 'equal objects (same properties "order")',
-        value1: {a: 1, b: '2'},
-        value2: {a: 1, b: '2'},
-        equal: true
+        value1: { a: 1, b: "2" },
+        value2: { a: 1, b: "2" },
+        equal: true,
       },
       {
         description: 'equal objects (different properties "order")',
-        value1: {a: 1, b: '2'},
-        value2: {b: '2', a: 1},
-        equal: true
+        value1: { a: 1, b: "2" },
+        value2: { b: "2", a: 1 },
+        equal: true,
       },
       {
-        description: 'not equal objects (extra property)',
-        value1: {a: 1, b: '2'},
-        value2: {a: 1, b: '2', c: []},
-        equal: false
+        description: "not equal objects (extra property)",
+        value1: { a: 1, b: "2" },
+        value2: { a: 1, b: "2", c: [] },
+        equal: false,
       },
       {
-        description: 'not equal objects (different property values)',
-        value1: {a: 1, b: '2', c: 3},
-        value2: {a: 1, b: '2', c: 4},
-        equal: false
+        description: "not equal objects (different property values)",
+        value1: { a: 1, b: "2", c: 3 },
+        value2: { a: 1, b: "2", c: 4 },
+        equal: false,
       },
       {
-        description: 'not equal objects (different properties)',
-        value1: {a: 1, b: '2', c: 3},
-        value2: {a: 1, b: '2', d: 3},
-        equal: false
+        description: "not equal objects (different properties)",
+        value1: { a: 1, b: "2", c: 3 },
+        value2: { a: 1, b: "2", d: 3 },
+        equal: false,
       },
       {
-        description: 'equal objects (same sub-properties)',
-        value1: { a: [ { b: 'c' } ] },
-        value2: { a: [ { b: 'c' } ] },
-        equal: true
+        description: "equal objects (same sub-properties)",
+        value1: { a: [{ b: "c" }] },
+        value2: { a: [{ b: "c" }] },
+        equal: true,
       },
       {
-        description: 'not equal objects (different sub-property value)',
-        value1: { a: [ { b: 'c' } ] },
-        value2: { a: [ { b: 'd' } ] },
-        equal: false
+        description: "not equal objects (different sub-property value)",
+        value1: { a: [{ b: "c" }] },
+        value2: { a: [{ b: "d" }] },
+        equal: false,
       },
       {
-        description: 'not equal objects (different sub-property)',
-        value1: { a: [ { b: 'c' } ] },
-        value2: { a: [ { c: 'c' } ] },
-        equal: false
+        description: "not equal objects (different sub-property)",
+        value1: { a: [{ b: "c" }] },
+        value2: { a: [{ c: "c" }] },
+        equal: false,
       },
       {
-        description: 'empty array and empty object are not equal',
+        description: "empty array and empty object are not equal",
         value1: {},
         value2: [],
-        equal: false
+        equal: false,
       },
       {
-        description: 'object with extra undefined properties are not equal #1',
+        description: "object with extra undefined properties are not equal #1",
         value1: {},
-        value2: {foo: undefined},
-        equal: false
+        value2: { foo: undefined },
+        equal: false,
       },
       {
-        description: 'object with extra undefined properties are not equal #2',
-        value1: {foo: undefined},
+        description: "object with extra undefined properties are not equal #2",
+        value1: { foo: undefined },
         value2: {},
-        equal: false
+        equal: false,
       },
       {
-        description: 'object with extra undefined properties are not equal #3',
-        value1: {foo: undefined},
-        value2: {bar: undefined},
-        equal: false
+        description: "object with extra undefined properties are not equal #3",
+        value1: { foo: undefined },
+        value2: { bar: undefined },
+        equal: false,
       },
       {
-        description: 'nulls are equal',
+        description: "nulls are equal",
         value1: null,
         value2: null,
-        equal: true
+        equal: true,
       },
       {
-        description: 'null and undefined are not equal',
+        description: "null and undefined are not equal",
         value1: null,
         value2: undefined,
-        equal: false
+        equal: false,
       },
       {
-        description: 'null and empty object are not equal',
+        description: "null and empty object are not equal",
         value1: null,
         value2: {},
-        equal: false
+        equal: false,
       },
       {
-        description: 'undefined and empty object are not equal',
+        description: "undefined and empty object are not equal",
         value1: undefined,
         value2: {},
-        equal: false
+        equal: false,
       },
       {
-        description: 'objects with different `toString` functions returning same values are equal',
-        value1: {toString: ()=>'Hello world!'},
-        value2: {toString: ()=>'Hello world!'},
-        equal: true
+        description:
+          "objects with different `toString` functions returning same values are equal",
+        value1: { toString: () => "Hello world!" },
+        value2: { toString: () => "Hello world!" },
+        equal: true,
       },
       {
-        description: 'objects with `toString` functions returning different values are not equal',
-        value1: {toString: ()=>'Hello world!'},
-        value2: {toString: ()=>'Hi!'},
-        equal: false
-      }
-    ]
+        description:
+          "objects with `toString` functions returning different values are not equal",
+        value1: { toString: () => "Hello world!" },
+        value2: { toString: () => "Hi!" },
+        equal: false,
+      },
+    ],
   },
 
   {
-    description: 'arrays',
+    description: "arrays",
     tests: [
       {
-        description: 'two empty arrays are equal',
+        description: "two empty arrays are equal",
         value1: [],
         value2: [],
-        equal: true
+        equal: true,
       },
       {
-        description: 'equal arrays',
+        description: "equal arrays",
         value1: [1, 2, 3],
         value2: [1, 2, 3],
-        equal: true
+        equal: true,
       },
       {
-        description: 'not equal arrays (different item)',
+        description: "not equal arrays (different item)",
         value1: [1, 2, 3],
         value2: [1, 2, 4],
-        equal: false
+        equal: false,
       },
       {
-        description: 'not equal arrays (different length)',
+        description: "not equal arrays (different length)",
         value1: [1, 2, 3],
         value2: [1, 2],
-        equal: false
+        equal: false,
       },
       {
-        description: 'equal arrays of objects',
-        value1: [{a: 'a'}, {b: 'b'}],
-        value2: [{a: 'a'}, {b: 'b'}],
-        equal: true
+        description: "equal arrays of objects",
+        value1: [{ a: "a" }, { b: "b" }],
+        value2: [{ a: "a" }, { b: "b" }],
+        equal: true,
       },
       {
-        description: 'not equal arrays of objects',
-        value1: [{a: 'a'}, {b: 'b'}],
-        value2: [{a: 'a'}, {b: 'c'}],
-        equal: false
+        description: "not equal arrays of objects",
+        value1: [{ a: "a" }, { b: "b" }],
+        value2: [{ a: "a" }, { b: "c" }],
+        equal: false,
       },
       {
-        description: 'pseudo array and equivalent array are not equal',
-        value1: {'0': 0, '1': 1, length: 2},
+        description: "pseudo array and equivalent array are not equal",
+        value1: { "0": 0, "1": 1, length: 2 },
         value2: [0, 1],
-        equal: false
-      }
-    ]
+        equal: false,
+      },
+    ],
   },
   {
-    description: 'Date objects',
+    description: "Date objects",
     tests: [
       {
-        description: 'equal date objects',
-        value1: new Date('2017-06-16T21:36:48.362Z'),
-        value2: new Date('2017-06-16T21:36:48.362Z'),
-        equal: true
+        description: "equal date objects",
+        value1: new Date("2017-06-16T21:36:48.362Z"),
+        value2: new Date("2017-06-16T21:36:48.362Z"),
+        equal: true,
       },
       {
-        description: 'not equal date objects',
-        value1: new Date('2017-06-16T21:36:48.362Z'),
-        value2: new Date('2017-01-01T00:00:00.000Z'),
-        equal: false
+        description: "not equal date objects",
+        value1: new Date("2017-06-16T21:36:48.362Z"),
+        value2: new Date("2017-01-01T00:00:00.000Z"),
+        equal: false,
       },
       {
-        description: 'date and string are not equal',
-        value1: new Date('2017-06-16T21:36:48.362Z'),
-        value2: '2017-06-16T21:36:48.362Z',
-        equal: false
+        description: "date and string are not equal",
+        value1: new Date("2017-06-16T21:36:48.362Z"),
+        value2: "2017-06-16T21:36:48.362Z",
+        equal: false,
       },
       {
-        description: 'date and object are not equal',
-        value1: new Date('2017-06-16T21:36:48.362Z'),
+        description: "date and object are not equal",
+        value1: new Date("2017-06-16T21:36:48.362Z"),
         value2: {},
-        equal: false
-      }
-    ]
+        equal: false,
+      },
+    ],
   },
   {
-    description: 'RegExp objects',
+    description: "RegExp objects",
     tests: [
       {
-        description: 'equal RegExp objects',
+        description: "equal RegExp objects",
         value1: /foo/,
         value2: /foo/,
-        equal: true
+        equal: true,
       },
       {
-        description: 'not equal RegExp objects (different pattern)',
+        description: "not equal RegExp objects (different pattern)",
         value1: /foo/,
         value2: /bar/,
-        equal: false
+        equal: false,
       },
       {
-        description: 'not equal RegExp objects (different flags)',
+        description: "not equal RegExp objects (different flags)",
         value1: /foo/,
         value2: /foo/i,
-        equal: false
+        equal: false,
       },
       {
-        description: 'RegExp and string are not equal',
+        description: "RegExp and string are not equal",
         value1: /foo/,
-        value2: 'foo',
-        equal: false
+        value2: "foo",
+        equal: false,
       },
       {
-        description: 'RegExp and object are not equal',
+        description: "RegExp and object are not equal",
         value1: /foo/,
         value2: {},
-        equal: false
-      }
-    ]
+        equal: false,
+      },
+    ],
   },
   {
-    description: 'functions',
+    description: "functions",
     tests: [
       {
-        description: 'same function is equal',
+        description: "same function is equal",
         value1: func1,
         value2: func1,
-        equal: true
+        equal: true,
       },
       {
-        description: 'different functions are not equal',
+        description: "different functions are not equal",
         value1: func1,
         value2: func2,
-        equal: false
-      }
-    ]
+        equal: false,
+      },
+    ],
   },
   {
-    description: 'sample objects',
+    description: "sample objects",
     tests: [
       {
-        description: 'big object',
+        description: "big object",
         value1: {
-          prop1: 'value1',
-          prop2: 'value2',
-          prop3: 'value3',
+          prop1: "value1",
+          prop2: "value2",
+          prop3: "value3",
           prop4: {
-            subProp1: 'sub value1',
+            subProp1: "sub value1",
             subProp2: {
-              subSubProp1: 'sub sub value1',
-              subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5]
-            }
+              subSubProp1: "sub sub value1",
+              subSubProp2: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
+            },
           },
           prop5: 1000,
-          prop6: new Date(2016, 2, 10)
+          prop6: new Date(2016, 2, 10),
         },
         value2: {
           prop5: 1000,
-          prop3: 'value3',
-          prop1: 'value1',
-          prop2: 'value2',
-          prop6: new Date('2016/03/10'),
+          prop3: "value3",
+          prop1: "value1",
+          prop2: "value2",
+          prop6: new Date("2016/03/10"),
           prop4: {
             subProp2: {
-              subSubProp1: 'sub sub value1',
-              subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5]
+              subSubProp1: "sub sub value1",
+              subSubProp2: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
             },
-            subProp1: 'sub value1'
-          }
+            subProp1: "sub value1",
+          },
         },
-        equal: true
-      }
-    ]
-  }
+        equal: true,
+      },
+    ],
+  },
 ];
 
 export default tests;

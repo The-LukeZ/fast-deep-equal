@@ -28,6 +28,8 @@ function testCases(
   });
 }
 
+console.log("tests loaded:", tests?.length, es6tests?.length);
+
 // equal already includes all ES6 support (Map, Set, TypedArrays, BigInt)
 testCases(equal, "equal - standard tests", tests);
 testCases(equal, "equal - es6 tests", es6tests);

@@ -15,7 +15,10 @@ function map(obj: Record<string, unknown>, Class = Map): Map<unknown, unknown> {
 function myMap(obj: Record<string, unknown>) {
   return map(obj, MyMap);
 }
-function set(arr: unknown[], Class: new () => Set<unknown> = Set): Set<unknown> {
+function set(
+  arr: unknown[],
+  Class: new () => Set<unknown> = Set,
+): Set<unknown> {
   const a = new Class();
   for (const v of arr) a.add(v);
   return a;

@@ -19,14 +19,15 @@ export function equal(a: unknown, b: unknown): boolean {
 
     if (a instanceof Map && b instanceof Map) {
       if (a.size !== b.size) return false;
-      for (const [key] of a) if (!b.has(key)) return false;
-      for (const [key, val] of a) if (!equal(val, b.get(key))) return false;
+      for (const [key, val] of a) {
+        if (!b.has(key) || !equal(val, b.get(key))) return false;
+      }
       return true;
     }
 
     if (a instanceof Set && b instanceof Set) {
       if (a.size !== b.size) return false;
-      for (const [key] of a) if (!b.has(key)) return false;
+      for (const key of a) if (!b.has(key)) return false;
       return true;
     }
 
