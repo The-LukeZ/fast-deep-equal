@@ -5,9 +5,6 @@ The fastest deep equal with ES6 Map, Set and Typed arrays support — now rewrit
 [![npm](https://img.shields.io/npm/v/@thelukez/fast-deep-equal.svg)](https://www.npmjs.com/package/@thelukez/fast-deep-equal)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-> Modern fork of [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) by Evgeny Poberezkin.
-> Rewritten in TypeScript, ships dual ESM + CJS, and drops legacy build tooling.
-
 > [!WARNING]
 > Since this is a modern rewrite, it may not be compatible with older environments. It could not support Node.js versions below 20, and it may not work in older browsers without polyfills.
 > If you need support for older environments, consider using the original [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) package.
@@ -22,7 +19,7 @@ npm install @thelukez/fast-deep-equal
 
 ## Features
 
-- Written in TypeScript — types included, no `@types/` package needed
+- Written in TypeScript with type definitions included
 - Dual ESM + CJS output via [`tsdown`](https://tsdown.dev)
 - Requires Node.js 20+
 - Checks equality of `Date` and `RegExp` objects by value
@@ -60,7 +57,7 @@ const reactEqual = require("@thelukez/fast-deep-equal/react");
 Run it yourself against your own data — the only benchmark that matters is yours:
 
 ```bash
-npm run benchmark
+pnpm run benchmark # bun can also be used if installed globally
 ```
 
 **Note:** the bundled benchmark compares against other popular libraries using the
@@ -69,9 +66,9 @@ included test fixtures. Results vary by data shape and Node.js version.
 ## Building from source
 
 ```bash
-npm install
-npm run build   # outputs to dist/
-npm test        # runs vitest
+pnpm install
+pnpm run build   # outputs to dist/
+pnpm test        # runs vitest
 ```
 
 ## License
