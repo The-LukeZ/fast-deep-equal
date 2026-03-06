@@ -1,23 +1,23 @@
 {
   "name": "@lukez/fast-deep-equal",
-  "version": "4.0.1",
-  "description": "Fast deep equal",
+  "version": "4.0.2",
+  "description": "Fast deep equal - but modern",
   "private": false,
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
     "./react": {
-      "import": "./dist/react.mjs",
+      "import": "./dist/react.js",
       "require": "./dist/react.cjs",
       "types": "./dist/react.d.ts"
     }
   },
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsdown",
