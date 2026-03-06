@@ -2,6 +2,7 @@
   "name": "@thelukez/fast-deep-equal",
   "version": "4.0.0",
   "description": "Fast deep equal",
+  "private": false,
   "type": "module",
   "exports": {
     ".": {
