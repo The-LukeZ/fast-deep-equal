@@ -1,0 +1,9 @@
+onlyBuiltDependencies:
+  - esbuild
+  - rolldown
+
+packages:
+  - .
+  - benchmark
+
+ignoreWorkspaceRootCheck: true

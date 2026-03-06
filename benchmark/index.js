@@ -1,60 +1,67 @@
-'use strict';
+"use strict";
 
-const assertDeepStrictEqual = require('assert').deepStrictEqual;
-const tests = require('../spec/tests');
-const Benchmark = require('benchmark');
-const suite = new Benchmark.Suite;
+import assert from "assert";
+import Benchmark from "benchmark";
 
+// keep spec/tests.js as a CommonJS data file — or convert it to tests.mjs
+import tests from "../src/__tests__/fixtures/tests.js";
+
+import { equal } from "../dist/index.js";
+import { deepEqual as fastEqualsDeep } from "fast-equals";
+import { isEqual as _isEqual } from "lodash-es";
+import * as R from "ramda";
+import { isDeepStrictEqual } from "util";
+
+const suite = new Benchmark.Suite();
 
 const equalPackages = {
-  'fast-deep-equal': require('..'),
-  'fast-deep-equal/es6': require('../es6'),
-  'fast-equals': require('fast-equals').deepEqual,
-  'nano-equal': true,
-  'shallow-equal-fuzzy': true,
-  'underscore.isEqual': require('underscore').isEqual,
-  'lodash.isEqual': require('lodash').isEqual,
-  'deep-equal': true,
-  'deep-eql': true,
-  'ramda.equals': require('ramda').equals,
-  'util.isDeepStrictEqual': require('util').isDeepStrictEqual,
-  'assert.deepStrictEqual': (a, b) => {
-    try { assertDeepStrictEqual(a, b); return true; }
-    catch(e) { return false; }
-  }
+  "fast-deep-equal": equal,
+  "fast-equals": fastEqualsDeep,
+  "lodash.isEqual": _isEqual,
+  "ramda.equals": R.equals,
+  "util.isDeepStrictEqual": isDeepStrictEqual,
+  "assert.deepStrictEqual": (a, b) => {
+    try {
+      assert.deepStrictEqual(a, b);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
 };
 
-
-for (const equalName in equalPackages) {
-  let equalFunc = equalPackages[equalName];
-  if (equalFunc === true) equalFunc = require(equalName);
-
+for (const [equalName, equalFunc] of Object.entries(equalPackages)) {
   for (const testSuite of tests) {
     for (const test of testSuite.tests) {
       try {
         if (equalFunc(test.value1, test.value2) !== test.equal)
-          console.error('different result', equalName, testSuite.description, test.description);
-      } catch(e) {
+          console.error(
+            "different result",
+            equalName,
+            testSuite.description,
+            test.description,
+          );
+      } catch (e) {
         console.error(equalName, testSuite.description, test.description, e);
       }
     }
   }
 
-  suite.add(equalName, function() {
-    for (const testSuite of tests) {
-      for (const test of testSuite.tests) {
-        if (test.description != 'pseudo array and equivalent array are not equal')
+  suite.add(equalName, () => {
+    for (const testSuite of tests)
+      for (const test of testSuite.tests)
+        if (
+          test.description !== "pseudo array and equivalent array are not equal"
+        )
           equalFunc(test.value1, test.value2);
-      }
-    }
   });
 }
 
-console.log();
+console.log("Running benchmark...");
 
 suite
-  .on('cycle', (event) => console.log(String(event.target)))
-  .on('complete', function () {
-    console.log('The fastest is ' + this.filter('fastest').map('name'));
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", function () {
+    console.log("The fastest is " + this.filter("fastest").map("name"));
   })
-  .run({async: true});
+  .run({ async: true });

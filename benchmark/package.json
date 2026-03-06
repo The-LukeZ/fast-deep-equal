@@ -5,7 +5,7 @@
     "deep-eql": "latest",
     "deep-equal": "latest",
     "fast-equals": "latest",
-    "lodash": "latest",
+    "lodash-es": "latest",
     "nano-equal": "latest",
     "ramda": "latest",
     "shallow-equal-fuzzy": "latest",
