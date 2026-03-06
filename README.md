@@ -2,7 +2,7 @@
 
 The fastest deep equal with ES6 Map, Set and Typed arrays support — now rewritten in TypeScript with dual ESM/CJS output.
 
-[![npm](https://img.shields.io/npm/v/@thelukez/fast-deep-equal.svg)](https://www.npmjs.com/package/@thelukez/fast-deep-equal)
+[![npm](https://img.shields.io/npm/v/@lukez/fast-deep-equal.svg)](https://www.npmjs.com/package/@lukez/fast-deep-equal)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 > [!WARNING]
@@ -14,7 +14,7 @@ The fastest deep equal with ES6 Map, Set and Typed arrays support — now rewrit
 ## Install
 
 ```bash
-npm install @thelukez/fast-deep-equal
+npm install @lukez/fast-deep-equal
 ```
 
 ## Features
@@ -29,7 +29,7 @@ npm install @thelukez/fast-deep-equal
 ## Usage
 
 ```ts
-import { equal } from "@thelukez/fast-deep-equal";
+import { equal } from "@lukez/fast-deep-equal";
 
 equal({ foo: "bar" }, { foo: "bar" }); // true
 equal(new Int32Array(), new Int32Array()); // true
@@ -42,14 +42,14 @@ Use the `/react` entry when comparing React elements. It avoids traversing
 `_owner`, which contains circular references and is irrelevant for element comparison:
 
 ```ts
-import { reactEqual } from "@thelukez/fast-deep-equal/react";
+import { reactEqual } from "@lukez/fast-deep-equal/react";
 ```
 
 ### CJS
 
 ```js
-const equal = require("@thelukez/fast-deep-equal");
-const reactEqual = require("@thelukez/fast-deep-equal/react");
+const equal = require("@lukez/fast-deep-equal");
+const reactEqual = require("@lukez/fast-deep-equal/react");
 ```
 
 ## Performance benchmark
