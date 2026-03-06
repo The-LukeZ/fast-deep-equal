@@ -33,7 +33,7 @@
     "equal",
     "deep-equal"
   ],
-  "author": "Evgeny Poberezkin",
+  "author": "The-LukeZ",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/The-LukeZ/fast-deep-equal/issues"
