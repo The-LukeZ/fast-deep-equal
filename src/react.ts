@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 export function reactEqual(a: unknown, b: unknown): boolean {
   if (a === b) return true;
 
-  if (a && b && typeof a == 'object' && typeof b == 'object') {
+  if (a && b && typeof a == "object" && typeof b == "object") {
     const aObj = a as Record<string, unknown>;
     const bObj = b as Record<string, unknown>;
 
@@ -19,8 +19,7 @@ export function reactEqual(a: unknown, b: unknown): boolean {
 
     if (a instanceof Map && b instanceof Map) {
       if (a.size !== b.size) return false;
-      for (const [key] of a)
-        if (!b.has(key)) return false;
+      for (const [key] of a) if (!b.has(key)) return false;
       for (const [key, val] of a)
         if (!reactEqual(val, b.get(key))) return false;
       return true;
@@ -28,8 +27,7 @@ export function reactEqual(a: unknown, b: unknown): boolean {
 
     if (a instanceof Set && b instanceof Set) {
       if (a.size !== b.size) return false;
-      for (const [key] of a)
-        if (!b.has(key)) return false;
+      for (const [key] of a) if (!b.has(key)) return false;
       return true;
     }
 
@@ -38,15 +36,20 @@ export function reactEqual(a: unknown, b: unknown): boolean {
       const bv = b as unknown as ArrayLike<number>;
       const length = av.length;
       if (length != bv.length) return false;
-      for (let i = length; i-- !== 0; )
-        if (av[i] !== bv[i]) return false;
+      for (let i = length; i-- !== 0; ) if (av[i] !== bv[i]) return false;
       return true;
     }
 
     if (aObj.constructor === RegExp)
-      return (a as RegExp).source === (b as RegExp).source && (a as RegExp).flags === (b as RegExp).flags;
+      return (
+        (a as RegExp).source === (b as RegExp).source &&
+        (a as RegExp).flags === (b as RegExp).flags
+      );
     if (aObj.valueOf !== Object.prototype.valueOf)
-      return (a as { valueOf(): unknown }).valueOf() === (b as { valueOf(): unknown }).valueOf();
+      return (
+        (a as { valueOf(): unknown }).valueOf() ===
+        (b as { valueOf(): unknown }).valueOf()
+      );
     if (aObj.toString !== Object.prototype.toString)
       return (a as object).toString() === (b as object).toString();
 
@@ -61,7 +64,7 @@ export function reactEqual(a: unknown, b: unknown): boolean {
       const key = keys[i];
       // React-specific: avoid traversing React elements' _owner.
       // _owner contains circular references and is not needed when comparing elements.
-      if (key === '_owner' && aObj.$$typeof) continue;
+      if (key === "_owner" && aObj.$$typeof) continue;
       if (!reactEqual(aObj[key], bObj[key])) return false;
     }
 
@@ -71,5 +74,3 @@ export function reactEqual(a: unknown, b: unknown): boolean {
   // true if both NaN, false otherwise
   return a !== a && b !== b;
 }
-
-export default reactEqual;

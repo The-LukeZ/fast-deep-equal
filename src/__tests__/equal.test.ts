@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import equal from "../index.js";
-import reactEqual from "../react.js";
+import { equal } from "../index.js";
+import { reactEqual } from "../react.js";
 import tests from "./fixtures/tests.js";
 import es6tests from "./fixtures/es6tests.js";
 

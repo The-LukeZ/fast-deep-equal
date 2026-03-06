@@ -1,61 +1,65 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import React from "react";
-import ReactTestRenderer from "react-test-renderer";
-import reactEqual from "../react.js";
+import { describe, it, expect } from "vitest";
+import { reactEqual } from "../react.js";
 
-describe("React element (with circular references)", () => {
-  class ChildWithShouldComponentUpdate extends React.Component<{
-    children?: React.ReactNode;
-  }> {
-    shouldComponentUpdate(nextProps: this["props"]) {
-      return !reactEqual(this.props, nextProps);
-    }
-    render() {
-      return null;
-    }
-  }
-
-  class Container extends React.Component<{
-    title?: string;
-    subtitle?: string;
-  }> {
-    render() {
-      return React.createElement(ChildWithShouldComponentUpdate, {
-        children: [
-          React.createElement("h1", null, this.props.title ?? ""),
-          React.createElement("h2", null, this.props.subtitle ?? ""),
-        ],
-      });
-    }
-  }
-
-  let warnSpy: ReturnType<typeof vi.spyOn>;
-  let renderSpy: ReturnType<typeof vi.spyOn>;
-
-  beforeEach(() => {
-    warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
-    renderSpy = vi.spyOn(ChildWithShouldComponentUpdate.prototype, "render");
+describe("reactEqual - _owner skipping", () => {
+  it("equal React-like elements (with circular _owner) are equal", () => {
+    const owner = {} as any;
+    const a = {
+      $$typeof: Symbol.for("react.element"),
+      type: "div",
+      props: { className: "foo" },
+      _owner: owner,
+    };
+    const b = {
+      $$typeof: Symbol.for("react.element"),
+      type: "div",
+      props: { className: "foo" },
+      _owner: owner,
+    };
+    // _owner is the same ref but even if it weren't, it should be skipped
+    expect(reactEqual(a, b)).toBe(true);
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
+  it("different _owner does not affect equality", () => {
+    const a = {
+      $$typeof: Symbol.for("react.element"),
+      type: "div",
+      props: {},
+      _owner: { id: 1 },
+    };
+    const b = {
+      $$typeof: Symbol.for("react.element"),
+      type: "div",
+      props: {},
+      _owner: { id: 999 },
+    };
+    expect(reactEqual(a, b)).toBe(true);
   });
 
-  it("compares without warnings or errors", () => {
-    const r = ReactTestRenderer.create(React.createElement(Container));
-    r.update(React.createElement(Container));
-    expect(warnSpy).not.toHaveBeenCalled();
+  it("different props are not equal regardless of _owner", () => {
+    const a = {
+      $$typeof: Symbol.for("react.element"),
+      type: "div",
+      props: { className: "foo" },
+      _owner: {},
+    };
+    const b = {
+      $$typeof: Symbol.for("react.element"),
+      type: "div",
+      props: { className: "bar" },
+      _owner: {},
+    };
+    expect(reactEqual(a, b)).toBe(false);
   });
 
-  it("elements of same type and props are equal", () => {
-    const r = ReactTestRenderer.create(React.createElement(Container));
-    r.update(React.createElement(Container));
-    expect(renderSpy).toHaveBeenCalledTimes(1); // no re-render
-  });
-
-  it("elements of same type with different props are not equal", () => {
-    const r = ReactTestRenderer.create(React.createElement(Container));
-    r.update(React.createElement(Container, { title: "New" }));
-    expect(renderSpy).toHaveBeenCalledTimes(2); // did re-render
+  it("circular reference via _owner does not throw", () => {
+    const element: any = {
+      $$typeof: Symbol.for("react.element"),
+      type: "div",
+      props: {},
+      _owner: null,
+    };
+    element._owner = element; // circular
+    expect(() => reactEqual(element, element)).not.toThrow();
   });
 });

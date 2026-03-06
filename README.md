@@ -11,6 +11,8 @@ The fastest deep equal with ES6 Map, Set and Typed arrays support — now rewrit
 > [!WARNING]
 > Since this is a modern rewrite, it may not be compatible with older environments. It could not support Node.js versions below 20, and it may not work in older browsers without polyfills.
 > If you need support for older environments, consider using the original [fast-deep-equal](https://github.com/epoberezkin/fast-deep-equal) package.
+>
+> It is also not a 100% drop-in replacement for the original, as you the default exports have been changed to named exports (`equal` and `reactEqual`). This was done to improve tree-shaking and ESM compatibility, but it may require some changes to your import statements.
 
 ## Install
 
@@ -30,7 +32,7 @@ npm install @thelukez/fast-deep-equal
 ## Usage
 
 ```ts
-import equal from "@thelukez/fast-deep-equal";
+import { equal } from "@thelukez/fast-deep-equal";
 
 equal({ foo: "bar" }, { foo: "bar" }); // true
 equal(new Int32Array(), new Int32Array()); // true
@@ -43,7 +45,7 @@ Use the `/react` entry when comparing React elements. It avoids traversing
 `_owner`, which contains circular references and is irrelevant for element comparison:
 
 ```ts
-import equal from "@thelukez/fast-deep-equal/react";
+import { reactEqual } from "@thelukez/fast-deep-equal/react";
 ```
 
 ### CJS

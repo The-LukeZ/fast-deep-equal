@@ -4,9 +4,9 @@ import assert from "assert";
 import Benchmark from "benchmark";
 
 // keep spec/tests.js as a CommonJS data file — or convert it to tests.mjs
-import tests from "../spec/tests.js";
+import tests from "../src/__tests__/fixtures/tests.js";
 
-import equal from "../dist/index.mjs";
+import { equal } from "../dist/index.js";
 import { deepEqual as fastEqualsDeep } from "fast-equals";
 import { isEqual as _isEqual } from "lodash-es";
 import * as R from "ramda";

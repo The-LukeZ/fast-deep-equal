@@ -5,3 +5,5 @@ onlyBuiltDependencies:
 packages:
   - .
   - benchmark
+
+ignoreWorkspaceRootCheck: true
