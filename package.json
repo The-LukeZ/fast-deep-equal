@@ -1,5 +1,5 @@
 {
-  "name": "@thelukez/fast-deep-equal",
+  "name": "@lukez/fast-deep-equal",
   "version": "4.0.0",
   "description": "Fast deep equal",
   "private": false,
