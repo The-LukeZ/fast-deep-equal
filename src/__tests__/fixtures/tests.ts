@@ -1,6 +1,20 @@
-'use strict';
 
-module.exports = [
+function func1() {}
+function func2() {}
+
+export interface TestCase {
+  description: string;
+  value1: unknown;
+  value2: unknown;
+  equal: boolean;
+  skip?: boolean;
+}
+export interface TestSuite {
+  description: string;
+  tests: TestCase[];
+}
+
+const tests: TestSuite[] = [
   {
     description: 'scalars',
     tests: [
@@ -396,5 +410,4 @@ module.exports = [
   }
 ];
 
-function func1() {}
-function func2() {}
+export default tests;

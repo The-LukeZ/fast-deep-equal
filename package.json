@@ -27,7 +27,11 @@
     "type": "git",
     "url": "git+https://github.com/epoberezkin/fast-deep-equal.git"
   },
-  "keywords": ["fast", "equal", "deep-equal"],
+  "keywords": [
+    "fast",
+    "equal",
+    "deep-equal"
+  ],
   "author": "Evgeny Poberezkin",
   "license": "MIT",
   "bugs": {
@@ -35,9 +39,13 @@
   },
   "homepage": "https://github.com/epoberezkin/fast-deep-equal#readme",
   "devDependencies": {
-    "tsdown": "^0.9.0",
-    "typescript": "^5.0.0",
-    "vitest": "^3.0.0"
+    "@types/react": "^19.2.14",
+    "@types/react-test-renderer": "^19.1.0",
+    "react": "^19.2.4",
+    "react-test-renderer": "^19.2.4",
+    "tsdown": "^0.9.9",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
   },
   "files": [
     "dist"
