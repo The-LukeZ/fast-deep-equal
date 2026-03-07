@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/The-LukeZ/fast-deep-equal#readme",
   "devDependencies": {
+    "@changesets/cli": "^2.30.0",
     "tsdown": "^0.9.9",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"

@@ -1,4 +1,6 @@
 {
+  "name": "@lukez/fast-deep-equal-benchmark",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
     "benchmark": "^2.1.4",
