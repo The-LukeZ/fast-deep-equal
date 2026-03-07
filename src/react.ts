@@ -45,12 +45,12 @@ export function reactEqual<Expected>(a: any, b: Expected): a is Expected {
         (a as RegExp).source === (b as unknown as RegExp).source &&
         (a as RegExp).flags === (b as unknown as RegExp).flags
       );
-    if (aObj.valueOf !== Object.prototype.valueOf) {
+    if (aObj.valueOf !== Object.prototype.valueOf && typeof a.valueOf === 'function' && typeof b.valueOf === 'function') {
       const aVal = (a as any).valueOf();
       const bVal = (b as any).valueOf();
       return Object.is(aVal, bVal);
     }
-    if (aObj.toString !== Object.prototype.toString)
+    if (aObj.toString !== Object.prototype.toString && typeof a.toString === 'function' && typeof b.toString === 'function')
       return (a as object).toString() === (b as object).toString();
 
     const keys = Object.keys(a);
