@@ -241,6 +241,48 @@ const tests: TestSuite[] = [
         value2: { toString: () => "Hi!" },
         equal: false,
       },
+      {
+        description:
+          "objects with custom `valueOf` functions returning same values are equal",
+        value1: { valueOf: () => 42 },
+        value2: { valueOf: () => 42 },
+        equal: true,
+      },
+      {
+        description:
+          "objects with custom `valueOf` functions returning different values are not equal",
+        value1: { valueOf: () => 42 },
+        value2: { valueOf: () => 100 },
+        equal: false,
+      },
+      {
+        description:
+          "different objects with `valueOf` property that is not a function are not equal",
+        value1: { valueOf: "not a function" },
+        value2: { valueOf: "also not a function" },
+        equal: false,
+      },
+      {
+        description:
+          "different objects with `toString` property that is not a function are not equal",
+        value1: { toString: 123 },
+        value2: { toString: 456 },
+        equal: false,
+      },
+      {
+        description:
+          "objects with `valueOf` property that is not a function equal (same value)",
+        value1: { valueOf: "not a function" },
+        value2: { valueOf: "not a function" },
+        equal: true,
+      },
+      {
+        description:
+          "objects with `toString` property that is not a function equal (same value)",
+        value1: { toString: 123 },
+        value2: { toString: 123 },
+        equal: true,
+      },
     ],
   },
 
@@ -317,6 +359,12 @@ const tests: TestSuite[] = [
         value1: new Date("2017-06-16T21:36:48.362Z"),
         value2: {},
         equal: false,
+      },
+      {
+        description: "invalid date objects (NaN) are equal",
+        value1: new Date("invalid"),
+        value2: new Date("invalid"),
+        equal: true,
       },
     ],
   },
