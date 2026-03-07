@@ -1,6 +1,6 @@
 "use strict";
 
-export function equal(a: unknown, b: unknown): boolean {
+export function equal<Expected>(a: any, b: Expected): a is Expected {
   if (a === b) return true;
 
   if (a && b && typeof a == "object" && typeof b == "object") {
@@ -42,14 +42,14 @@ export function equal(a: unknown, b: unknown): boolean {
 
     if (aObj.constructor === RegExp)
       return (
-        (a as RegExp).source === (b as RegExp).source &&
-        (a as RegExp).flags === (b as RegExp).flags
+        (a as RegExp).source === (b as unknown as RegExp).source &&
+        (a as RegExp).flags === (b as unknown as RegExp).flags
       );
-    if (aObj.valueOf !== Object.prototype.valueOf)
-      return (
-        (a as { valueOf(): unknown }).valueOf() ===
-        (b as { valueOf(): unknown }).valueOf()
-      );
+    if (aObj.valueOf !== Object.prototype.valueOf) {
+      const aVal = (a as any).valueOf();
+      const bVal = (b as any).valueOf();
+      return Object.is(aVal, bVal);
+    }
     if (aObj.toString !== Object.prototype.toString)
       return (a as object).toString() === (b as object).toString();
 
