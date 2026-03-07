@@ -28,5 +28,3 @@ jobs:
             - run: pnpm install --no-frozen-lockfile
 
             - run: pnpm ci:publish
-              env:
-                  NPM_CONFIG_PROVENANCE: true
